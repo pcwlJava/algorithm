@@ -1,4 +1,4 @@
-package com.leetcode.scanner;
+package com.dailypractice.scanner;
 
 import java.util.Scanner;
 
@@ -23,4 +23,21 @@ public class Demo1 {
         }
     }
 
+    public void getInput(){
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+
+        scanner.nextLine();
+
+        String[] strings = new String[n];
+
+        for(int i = 0 ; i < n ; i ++) {
+            String s = scanner.nextLine();
+            strings[i] = s;
+        }
+    }
+
 }
+
+

@@ -1,34 +1,13 @@
-package com.bishi.hauwei;
+package com.leetcode.string;
 
-import java.util.Scanner;
 import java.util.Stack;
 
-public class Second {
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-
-        if(str == null || str.length() < 1){
-            System.out.println("");
-        }
-        // 将所有的括号都替换成（）形式
-        String newStr = replaceStr(str);
-        // 解码字符串
-        String resString = decodeString(newStr);
-        // 逆序字符串
-        StringBuffer sb = new StringBuffer(resString);
-        System.out.print(sb.reverse());
-    }
-
-    public static String replaceStr(String str){
-        str = str.replace('{','(');
-        str = str.replace('[','(');
-        str = str.replace('}',')');
-        str = str.replace(']',')');
-
-        return str;
-    }
+/**
+ * @author pengcheng
+ * @date 2019/4/13 - 16:28
+ * @content:
+ */
+public class DecodeString_394 {
 
     public static String decodeString(String str){
         String res = "";
@@ -48,14 +27,14 @@ public class Second {
                 while(Character.isDigit(str.charAt(index))){
                     curNum = 10 * curNum + (str.charAt(index++) - '0');
                 }
-            }else if(ch == '('){
+            }else if(ch == '['){
                 // 遇到 '[' 时，将之前的字符和数字都压栈，并将其引用设为初始值
                 resStack.push(res);
                 res = "";
                 countStack.push(curNum);
                 curNum = 0;
                 index++;
-            }else if(ch == ')'){
+            }else if(ch == ']'){
                 // 遇到 ']' 就将两个栈里面的内容弹出，拼接到 res 中
                 StringBuilder temp = new StringBuilder(resStack.pop());
                 int repeatTimes = countStack.pop();
@@ -70,5 +49,9 @@ public class Second {
             }
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        decodeString("abc4[A]");
     }
 }
